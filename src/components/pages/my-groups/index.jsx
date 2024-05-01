@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../../header";
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -6,19 +6,7 @@ import { useToast } from "@chakra-ui/react";
 import "./myGroups.css";
 
 function MyGroups({ groups }) {
-  const [storedGroups, setStoredGroups] = useState([]);
   const toast = useToast();
-
-  useEffect(() => {
-    const storedData = localStorage.getItem("colorGroups");
-    if (storedData) {
-      setStoredGroups(JSON.parse(storedData));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("colorGroups", JSON.stringify(groups));
-  }, [groups]);
 
   const handleCopy = (colorCode) => {
     navigator.clipboard.writeText(colorCode);
@@ -35,7 +23,7 @@ function MyGroups({ groups }) {
     <>
       <Header />
       <Box className="main">
-        {storedGroups.map((group, index) => (
+        {groups.map((group, index) => (
           <Box key={index} className="group">
             <Heading
               display="flex"
@@ -66,7 +54,7 @@ function MyGroups({ groups }) {
             </Box>
           </Box>
         ))}
-        {storedGroups.length === 0 && (
+        {groups.length === 0 && (
           <Text textAlign="center">No Color Group Added Yet</Text>
         )}
       </Box>
