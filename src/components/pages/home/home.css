@@ -1,0 +1,13 @@
+.buttonArea {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.gifArea {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.gifArea img {
+    position: absolute;
+}
